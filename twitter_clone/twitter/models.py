@@ -6,11 +6,14 @@ from django.dispatch import receiver
 
 # Create A User Profile Model
 class Profile(models.Model):
+    objects = None
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     follows = models.ManyToManyField("self",
                                      related_name="followed_by",
                                      symmetrical=False,
                                      blank=True)
+
+    date_modified = models.DateTimeField(User, auto_now=True)
 
     def __str__(self):
         return self.user.username
