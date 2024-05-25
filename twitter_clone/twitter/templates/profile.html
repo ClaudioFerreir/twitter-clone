@@ -10,7 +10,10 @@
                 {% if twitters %}
                     {% for twitter in twitters %}
                         <div class="alert alert-secondary" role="alert">
-                            {{ twitter }}
+                            {{ twitter.body }} <br>
+                            <small class="text-muted">
+                                ({{ twitter.created_at }}) By @{{ twitter.user.username }}
+                            </small>
                         </div><br><br>
                     {% endfor %}
                 {% endif %}

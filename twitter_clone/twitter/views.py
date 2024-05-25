@@ -1,13 +1,26 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Profile, Twitter
+from .forms import TwitterForm
 
 
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
+        form = TwitterForm(request.POST or None)
+        if request.method == 'POST':
+            if form.is_valid():
+                twitter = form.save(commit=False)
+                twitter.user = request.user
+                twitter.save()
+                messages.success(request, 'Your Twitter Has Been Posted!')
+                return redirect('home')
+
         twitters = Twitter.objects.all().order_by('-created_at')
-    return render(request, 'home.html', {"twitters": twitters})
+        return render(request, 'home.html', {"twitters": twitters, "form": form})
+    else:
+        twitters = Twitter.objects.all().order_by('-created_at')
+        return render(request, 'home.html', {"twitters": twitters})
 
 def profile_list(request):
     if request.user.is_authenticated:
