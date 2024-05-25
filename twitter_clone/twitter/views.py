@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Profile
+from .models import Profile, Twitter
 
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html', {})
+    if request.user.is_authenticated:
+        twitters = Twitter.objects.all().order_by('-created_at')
+    return render(request, 'home.html', {"twitters": twitters})
 
 def profile_list(request):
     if request.user.is_authenticated:
@@ -19,6 +21,7 @@ def profile_list(request):
 def profile(request, pk):
     if request.user.is_authenticated:
         profile = Profile.objects.get(user_id=pk)
+        twitters = Twitter.objects.filter(user_id=pk).order_by('-created_at')
 
         # Post Form logic
         if request.method == "POST":
@@ -35,7 +38,7 @@ def profile(request, pk):
             current_user_profile.save()
 
 
-        return render(request, 'profile.html', {'profile': profile})
+        return render(request, 'profile.html', {'profile': profile, 'twitters': twitters})
     else:
         messages.success(request, 'You Must Be Logged In To View this Page')
         return redirect('home')
