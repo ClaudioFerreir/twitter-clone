@@ -57,3 +57,6 @@ class SignupForm(UserCreationForm):
         self.fields[
             'password2'].help_text = ('<span class="form-text text-muted"><small>Enter the same password as before, '
                                       'for verification.</small></span>')
+
+
+
