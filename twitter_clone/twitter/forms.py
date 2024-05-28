@@ -1,7 +1,17 @@
 from django import forms
-from .models import Twitter
+from .models import Twitter, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
+
+# Profile Extra Form
+class ProfilePicForm(forms.ModelForm):
+    profile_image = forms.ImageField(label='Profile Picture')
+
+    class Meta:
+        model = Profile
+        fields = ['profile_image']
+
 
 
 class TwitterForm(forms.ModelForm):
