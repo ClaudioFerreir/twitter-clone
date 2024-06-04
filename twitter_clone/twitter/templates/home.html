@@ -23,9 +23,13 @@
                                     <small class="text-muted">
                                         ({{ twitter.created_at }}) By @{{ twitter.user.username }} - {{ twitter.number_of_likes }} Likes -
                                         {% if user in twitter.likes.all %}
-                                            <a href="{% url 'twitter_like' twitter.id %}">Unlike</a>
+                                            <a href="{% url 'twitter_like' twitter.id %}">
+                                                <i class="fa fa-heart-o" style="color: red"></i>
+                                            </a>
                                         {% else %}
-                                            <a href="{% url 'twitter_like' twitter.id %}">Like</a>
+                                            <a href="{% url 'twitter_like' twitter.id %}">
+                                                <i class="fa-solid fa-heart" style="color: red"></i>
+                                            </a>
                                         {% endif %}
                                     </small>
                                 </div>
