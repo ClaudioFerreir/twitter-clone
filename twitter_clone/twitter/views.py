@@ -127,7 +127,7 @@ def twitter_like(request, pk):
             twitter.likes.remove(request.user)
         else:
             twitter.likes.add(request.user)
-        return redirect('home')
+        return redirect(request.META.get('HTTP_REFERER'))
     else:
         messages.success(request, 'You Must Be Logged In To View this Page!')
         return redirect('home')

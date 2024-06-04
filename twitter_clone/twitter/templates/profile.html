@@ -23,7 +23,13 @@
                                     <div class="col-11">
                                         {{ twitter.body }} <br>
                                         <small class="text-muted">
-                                            ({{ twitter.created_at }}) By @{{ twitter.user.username }}
+                                            ({{ twitter.created_at }}) By @{{ twitter.user.username }} - {{ twitter.number_of_likes }} Likes -
+
+                                            {% if user in twitter.likes.all %}
+                                                <a href="{% url 'twitter_like' twitter.id %}">Unlike</a>
+                                            {% else %}
+                                                <a href="{% url 'twitter_like' twitter.id %}">Like</a>
+                                            {% endif %}
                                         </small>
                                     </div>
                                 </div>
