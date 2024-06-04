@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Profile, Twitter
 from .forms import TwitterForm, SignupForm, ProfilePicForm
@@ -115,6 +115,19 @@ def update_user(request):
             messages.success(request, 'You Profile Has Been Updated!')
             return redirect('home')
         return render(request, 'update_user.html', {'user_form': user_form, 'profile_form': profile_form})
+    else:
+        messages.success(request, 'You Must Be Logged In To View this Page!')
+        return redirect('home')
+
+
+def twitter_like(request, pk):
+    if request.user.is_authenticated:
+        twitter = get_object_or_404(Twitter, id=pk)
+        if twitter.likes.filter(id=request.user.id):
+            twitter.likes.remove(request.user)
+        else:
+            twitter.likes.add(request.user)
+        return redirect('home')
     else:
         messages.success(request, 'You Must Be Logged In To View this Page!')
         return redirect('home')
