@@ -10,5 +10,5 @@ urlpatterns = [
     path('register/', views.register_user, name='register'),
     path('update_user/', views.update_user, name='update_user'),
     path('twitter_like/<int:pk>', views.twitter_like, name='twitter_like'),
-
+    path('twitter_show/<int:pk>', views.twitter_show, name='twitter_show'),
 ]

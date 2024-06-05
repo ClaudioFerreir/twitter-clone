@@ -5,9 +5,7 @@
     <div class="container text-center">
         <div class="row">
             <div class="col-8">
-                <h1>Twitters!</h1>
                 <br>
-                {% for twitter in twitters %}
                     <div class="alert alert-secondary" role="alert">
                         <div class="container">
                             <div class="row">
@@ -21,26 +19,21 @@
                                 <div class="col-11">
                                     {{ twitter.body }} <br>
                                     <small class="text-muted">
-                                        ({{ twitter.created_at }}) By @{{ twitter.user.username }} &nbsp;&nbsp; {{ twitter.number_of_likes }}
+                                        ({{ twitter.created_at }}) By @{{ twitter.user.username }} - {{ twitter.number_of_likes }} Likes -
                                         {% if user in twitter.likes.all %}
-                                            <a href="{% url 'twitter_like' twitter.id %}" style="text-decoration: none">
-                                                <i class="fa-solid fa-heart" style="color: red"></i>
-                                            </a>
-                                        {% else %}
-                                            <a href="{% url 'twitter_like' twitter.id %}" style="text-decoration: none">
+                                            <a href="{% url 'twitter_like' twitter.id %}">
                                                 <i class="fa fa-heart-o" style="color: red"></i>
                                             </a>
+                                        {% else %}
+                                            <a href="{% url 'twitter_like' twitter.id %}">
+                                                <i class="fa-solid fa-heart" style="color: red"></i>
+                                            </a>
                                         {% endif %}
-                                        &nbsp;&nbsp;
-                                        <a href="{% url 'twitter_show' twitter.id %}">
-                                            <i class="fa-solid fa-share" style="color: gray"></i>
-                                        </a>
                                     </small>
                                 </div>
                             </div>
                         </div>
                     </div><br><br>
-                {% endfor %}
             </div>
             <div class="col-4">
                 <br><br><br>
