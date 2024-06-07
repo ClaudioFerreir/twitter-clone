@@ -24,6 +24,7 @@ def home(request):
         twitters = Twitter.objects.all().order_by('-created_at')
         return render(request, 'home.html', {"twitters": twitters})
 
+
 def profile_list(request):
     if request.user.is_authenticated:
         profiles = Profile.objects.exclude(user=request.user)
@@ -31,6 +32,7 @@ def profile_list(request):
     else:
         messages.success(request, 'You Must Be Logged In To View this Page')
         return redirect('home')
+
 
 def unfollow(request, pk):
     if request.user.is_authenticated:
@@ -47,6 +49,24 @@ def unfollow(request, pk):
     else:
         messages.success(request, 'You Must Be Logged In To View this Page')
         return redirect('home')
+
+
+def follow(request, pk):
+    if request.user.is_authenticated:
+        # Get the profile to unfollow
+        profile = Profile.objects.get(user_id=pk)
+        # Unfollow the user
+        request.user.profile.follows.add(profile)
+        # Save our profile
+        request.user.profile.save()
+        # Return message
+        messages.success(request, f'You Have Successfully Followed {profile.user.username}')
+        return redirect(request.META.get('HTTP_REFERER'))
+
+    else:
+        messages.success(request, 'You Must Be Logged In To View this Page')
+        return redirect('home')
+
 
 def profile(request, pk):
     if request.user.is_authenticated:
@@ -66,7 +86,6 @@ def profile(request, pk):
                 current_user_profile.follows.add(profile)
             # Save the profile
             current_user_profile.save()
-
 
         return render(request, 'profile.html', {'profile': profile, 'twitters': twitters})
     else:
@@ -90,10 +109,12 @@ def login_user(request):
     else:
         return render(request, 'login.html', {})
 
+
 def logout_user(request):
     logout(request)
     messages.success(request, 'You Have Been Logged Out!')
     return redirect('home')
+
 
 def register_user(request):
     form = SignupForm()
