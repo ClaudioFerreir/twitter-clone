@@ -86,7 +86,11 @@
                   <h5 class="card-header">Follows</h5>
                   <div class="card-body">
                       {% for following in profile.follows.all %}
-                            <p class="card-text"><a href="{% url 'profile' following.user.id %}">@{{ following|lower }}</a></p>
+                            <p class="card-text"><a href="{% url 'profile' following.user.id %}">@{{ following|lower }}</a>
+                                <a href="{% url 'unfollow' following.user.id %}">
+                                    <i class="fa fa-undo small" style="color: gray"></i>
+                                </a>
+                            </p>
                       {% endfor %}
                   </div>
                 </div>
