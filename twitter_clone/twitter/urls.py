@@ -12,4 +12,5 @@ urlpatterns = [
     path('twitter_like/<int:pk>', views.twitter_like, name='twitter_like'),
     path('twitter_show/<int:pk>', views.twitter_show, name='twitter_show'),
     path('unfollow/<int:pk>', views.unfollow, name='unfollow'),
+    path('follow/<int:pk>', views.follow, name='follow'),
 ]
