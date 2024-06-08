@@ -96,19 +96,23 @@
                 </div>
                 <br><br>
                 <div class="card">
-                  <h5 class="card-header">Followed By</h5>
-                  <div class="card-body">
-                      {% for following in profile.followed_by.all %}
-                            <p class="card-text"><a href="{% url 'profile' following.user.id %}">@{{ following|lower }}</a>
-                                &nbsp;
-                            {% if not following in profile.follows.all %}
-                                <a href="{% url 'follow' following.user.id %}">
-                                    <i class="fa fa-user-plus small" style="color: gray"></i>
-                                </a>
-                            {% endif %}
-                            </p>
-                      {% endfor %}
-                  </div>
+                      <h5 class="card-header">Followed By</h5>
+                      <div class="card-body">
+                          {% for following in profile.followed_by.all|slice:3 %}
+                                <p class="card-text"><a href="{% url 'profile' following.user.id %}">@{{ following|lower }}</a>
+                                    &nbsp;
+                                {% if not following in profile.follows.all %}
+                                    <a href="{% url 'follow' following.user.id %}">
+                                        <i class="fa fa-user-plus small" style="color: gray"></i>
+                                    </a>
+                                {% endif %}
+                                </p>
+                          {% endfor %}
+                          <br>
+                      </div>
+                      <div class="card-footer">
+                            <a href="{% url 'followers' profile.user.id %}">See All...</a>
+                      </div>
                 </div>
                 <br>
                 <form method="POST">
