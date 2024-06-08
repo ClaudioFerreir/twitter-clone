@@ -85,7 +85,7 @@
                 <div class="card">
                   <h5 class="card-header">Follows</h5>
                   <div class="card-body">
-                      {% for following in profile.follows.all %}
+                      {% for following in profile.follows.all|slice:3 %}
                             <p class="card-text"><a href="{% url 'profile' following.user.id %}">@{{ following|lower }}</a>
                                 <a href="{% url 'unfollow' following.user.id %}">
                                     <i class="fa fa-user-minus small" style="color: gray"></i>
@@ -93,25 +93,28 @@
                             </p>
                       {% endfor %}
                   </div>
+                  <div class="card-footer text-end">
+                      <a href="{% url 'follows' profile.user.id %}" class="btn btn-sm btn-outline-secondary">See All...</a>
+                  </div>
                 </div>
                 <br><br>
                 <div class="card">
                       <h5 class="card-header">Followed By</h5>
                       <div class="card-body">
                           {% for following in profile.followed_by.all|slice:3 %}
-                                <p class="card-text"><a href="{% url 'profile' following.user.id %}">@{{ following|lower }}</a>
-                                    &nbsp;
-                                {% if not following in profile.follows.all %}
-                                    <a href="{% url 'follow' following.user.id %}">
-                                        <i class="fa fa-user-plus small" style="color: gray"></i>
-                                    </a>
-                                {% endif %}
-                                </p>
+                               <p class="card-text">
+                                    <a href="{% url 'profile' following.user.id %}">@{{ following|lower }}</a>
+                                        &nbsp;
+                                    {% if not following in profile.follows.all %}
+                                        <a href="{% url 'follow' following.user.id %}">
+                                            <i class="fa fa-user-plus small" style="color: gray"></i>
+                                        </a>
+                                    {% endif %}
+                               </p>
                           {% endfor %}
-                          <br>
                       </div>
-                      <div class="card-footer">
-                            <a href="{% url 'followers' profile.user.id %}">See All...</a>
+                      <div class="card-footer text-end">
+                          <a href="{% url 'followers' profile.user.id %}" class="btn btn-sm btn-outline-secondary">See All...</a>
                       </div>
                 </div>
                 <br>
