@@ -202,3 +202,21 @@ def twitter_show(request, pk):
     else:
         messages.success(request, 'That Twitter Does Not Exist!')
         return redirect('home')
+
+
+def delete_twitter(request, pk):
+    if request.user.is_authenticated:
+        twitter = get_object_or_404(Twitter, id=pk)
+        # Check to see if you own the meep
+        if request.user.username == twitter.user.username:
+            # Delete the twitter
+            twitter.delete()
+
+            messages.success(request, 'The Twitter Has Been Deleted!')
+            return redirect(request.META.get('HTTP_REFERER'))
+        else:
+            messages.success(request, "You Don't Own That Twitter Account!")
+            return redirect('home')
+    else:
+        messages.success(request, 'Please Login To View this Page!')
+        return redirect(request.META.get('HTTP_REFERER'))

@@ -35,9 +35,15 @@
                                                 </a>
                                             {% endif %}
                                             &nbsp;&nbsp;
-                                            <a href="{% url 'twitter_show' twitter.id %}">
+                                            <a href="{% url 'twitter_show' twitter.id %}" style="text-decoration: none">
                                                 <i class="fa-solid fa-share" style="color: gray"></i>
                                             </a>
+                                            {% if request.user.username == profile.user.username %}
+                                                &nbsp;&nbsp;
+                                                <a href="{% url 'delete_twitter' twitter.id %}" style="text-decoration: none">
+                                                    <i class="fas fa-trash-alt" style="color: gray"></i>
+                                                </a>
+                                            {% endif %}
                                         </small>
                                     </div>
                                 </div>
