@@ -220,3 +220,27 @@ def delete_twitter(request, pk):
     else:
         messages.success(request, 'Please Login To View this Page!')
         return redirect(request.META.get('HTTP_REFERER'))
+
+def edit_twitter(request, pk):
+    if request.user.is_authenticated:
+        # Grab The Twitter
+        twitter = get_object_or_404(Twitter, id=pk)
+        # Check to see if you own the meep
+        if request.user.username == twitter.user.username:
+            form = TwitterForm(request.POST or None, instance=twitter)
+            if request.method == 'POST':
+                if form.is_valid():
+                    twitter = form.save(commit=False)
+                    twitter.user = request.user
+                    twitter.save()
+                    messages.success(request, 'Your Twitter Has Been Edited!')
+                    return redirect('home')
+            else:
+                return render(request, 'edit_twitter.html', {'form': form, 'twitter': twitter})
+
+        else:
+            messages.success(request, "You Don't Own That Twitter Account!")
+            return redirect('home')
+    else:
+        messages.success(request, 'Please Login To View this Page!')
+        return redirect('home')
