@@ -244,3 +244,14 @@ def edit_twitter(request, pk):
     else:
         messages.success(request, 'Please Login To View this Page!')
         return redirect('home')
+
+
+def search(request):
+    if request.method == 'POST':
+        # Grab the form field input
+        search = request.POST['search']
+        # Search the database
+        searched = Twitter.objects.filter(body__icontains = search)
+        return render(request, 'search.html', {'search': search, 'searched': searched})
+    else:
+        return render(request, 'search.html', {})
