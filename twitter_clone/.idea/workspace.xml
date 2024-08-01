@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bb2dcd5c-5794-44f1-91fb-7da668f8ead0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitter_clone/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_clone/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +94,7 @@
       <updated>1715951175525</updated>
       <workItem from="1715951177084" duration="5294000" />
       <workItem from="1722367882804" duration="7759000" />
-      <workItem from="1722424043459" duration="4563000" />
+      <workItem from="1722424043459" duration="6277000" />
     </task>
     <servers />
   </component>
