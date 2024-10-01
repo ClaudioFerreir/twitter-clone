@@ -1,4 +1,4 @@
-#!/Volumes/CLAUDIOFERR/EBAC/twitter_clone/venv/bin/python3
+#!/Volumes/CLAUDIOFERR/EBAC/twitter_clone/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
