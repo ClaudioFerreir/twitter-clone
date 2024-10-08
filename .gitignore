@@ -4,3 +4,7 @@ db.sqlite3
 /venv
 /staticfiles
 .env
+._*
+.DS_Store
+# Ignorar arquivos e configurações do PyCharm/IntelliJ
+twitter_clone/.idea/
