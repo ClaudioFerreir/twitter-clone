@@ -32,6 +32,9 @@ DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
+# Adicione este print para verificar o valor de ALLOWED_HOSTS
+print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
+
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
