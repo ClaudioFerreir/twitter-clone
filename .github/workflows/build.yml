@@ -12,42 +12,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Faz checkout do código no repositório
     - uses: actions/checkout@v2
 
+    # Configura a versão do Python
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
 
-    # Ir para a subpasta onde o projeto está localizado (se estiver dentro de 'twitter_clone')
-    - name: Navigate to subdirectory
-      run: cd twitter_clone
-
-    # Instalar poetry e dependências
-    - name: Install poetry
+    # Instala o Poetry e as dependências do sistema
+    - name: Install poetry and dependencies
       run: |
         python -m ensurepip
         python -m pip install --upgrade pip
-        python -m pip install --upgrade poetry
+        python -m pip install poetry
       working-directory: twitter_clone
 
-    # Verificar a instalação do poetry
-    - name: View poetry --help
-      run: poetry --help
-      working-directory: twitter_clone
-
-    # Instalar as dependências do projeto
-    - name: Install dependencies
+    # Instala as dependências do projeto com poetry
+    - name: Install project dependencies
       run: poetry install
       working-directory: twitter_clone
 
-    # Rodar as migrações do banco de dados SQLite
+    # Executa as migrações no banco de dados SQLite
     - name: Run migrations
       run: poetry run python manage.py migrate
       working-directory: twitter_clone
 
-    # Rodar os testes Django
-    - name: Test
+    # Executa os testes do Django
+    - name: Run tests
       run: poetry run python manage.py test
       working-directory: twitter_clone
-
