@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Faz checkout do código no repositório
-    - uses: actions/checkout@v2
+    # Faz checkout do código no repositório (versão atualizada)
+    - uses: actions/checkout@v3
 
-    # Configura a versão do Python
+    # Configura a versão do Python (versão atualizada)
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
 
