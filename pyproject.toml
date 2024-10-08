@@ -8,6 +8,9 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 requests = "^2.32.3"
+python-dotenv = "^1.0.1"
+mysqlclient = "^2.2.4"
+pymysql = "^1.1.1"
 
 
 [build-system]
