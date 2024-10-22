@@ -13,7 +13,7 @@
                                     {% if twitter.user.profile.profile_image %}
                                         <img src="{{ twitter.user.profile.profile_image.url }}" width=50 height=50 alt="{{ twitter.user.profile.user.username }}" class="rounded-circle">
                                     {% else %}
-                                        <img src="{% static 'images/default-profile.png' %}" width=50 height=50 alt="{{ twitter.user.profile.user.username }}" class="rounded-circle">
+                                        <img src="{% static 'images/default_profile.png' %}" width=50 height=50 alt="{{ twitter.user.profile.user.username }}" class="rounded-circle">
                                     {% endif %}
                                 </div>
                                 <div class="col-11">
