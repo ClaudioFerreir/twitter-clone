@@ -40,12 +40,14 @@
 
             {% if user.is_authenticated %}
             <ul class="navbar-nav ml-auto">
-                <li class="nav-link navbar-brand">
-                    <a href="{% url 'profile' request.user.id %}">
+                <li class="nav-item">
+                    <a href="{% url 'profile' request.user.id %}" class="nav-link">
                         {% if user.profile.profile_image %}
-                        <img src="{{ user.profile.profile_image.url }}" width=30 height=30 alt="{{ user.profile.user.username }}" class="rounded-circle">
+                        <img src="{{ user.profile.profile_image.url }}" width=30 height=30 alt="{{ user.profile.user.username }}" class="rounded-circle d-none d-md-inline-block">
+                        <span class="d-md-none dropdown-item">MyProfile</span>
                         {% else %}
-                        <img src="{% static 'images/default_profile.png' %}" width=30 height=30 alt="{{ user.profile.user.username }}" class="rounded-circle">
+                        <img src="{% static 'images/default_profile.png' %}" width=30 height=30 alt="{{ user.profile.user.username }}" class="rounded-circle d-none d-md-inline-block">
+                        <span class="d-md-none dropdown-item">MyProfile</span>
                         {% endif %}
                     </a>
                 </li>
