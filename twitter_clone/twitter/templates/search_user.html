@@ -22,15 +22,15 @@
 
                 <div class="card mb-3" style="max-width: 540px;">
                   <div class="row g-0">
-                    <div class="col-md-4">
+                    <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
                         {% if result.profile.profile_image %}
                             <img src="{{ result.profile.profile_image.url }}" alt="{{ result.profile.user.username }}" width=200 height=200 class="img-fluid rounded-start">
                         {% else %}
                             <img src="{% static 'images/default-profile.png' %}" class="img-fluid rounded-start" alt="profile image">
                         {% endif %}
                     </div>
-                    <div class="col-md-8">
-                      <div class="card-body">
+                    <div class="col-12 col-md-8 d-flex justify-content-center align-items-center">
+                      <div class="card-body text-center">
                         <h5 class="card-title">{{ result.profile.user.username }}</h5>
                         <p class="card-text"><a href="{% url 'profile' result.profile.user.id %}">@{{ result.profile.user.username|lower }}</a></p><br><br>
                         <p class="card-text"><small class="text-body-secondary">Last Updated: {{ result.profile.date_modified }}</small></p>

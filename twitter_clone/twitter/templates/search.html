@@ -21,14 +21,14 @@
                 <div class="alert alert-secondary" role="alert">
                     <div class="container">
                         <div class="row">
-                            <div class="col-1">
+                            <div class="col-2 d-flex align-items-center">
                                 {% if twitter.user.profile.profile_image %}
                                     <img src="{{ twitter.user.profile.profile_image.url }}" width=50 height=50 alt="{{ twitter.user.profile.user.username }}" class="rounded-circle">
                                 {% else %}
                                     <img src="{% static 'images/default-profile.png' %}" width=50 height=50 alt="{{ twitter.user.profile.user.username }}" class="rounded-circle">
                                 {% endif %}
                             </div>
-                            <div class="col-11">
+                            <div class="col-10">
                                 {{ twitter.body }} <br>
                                 <small class="text-muted">
                                     ({{ twitter.created_at }}) By @{{ twitter.user.username }} &nbsp;&nbsp; {{ twitter.number_of_likes }}

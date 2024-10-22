@@ -6,21 +6,21 @@
 
     <div class="container text-center">
         <div class="row">
-            <div class="col-8">
+            <div class="col-sm-12 col-md-8">
                 <h1>{{ profile.user.username }}'s Profile</h1><br>
                 {% if twitters %}
                     {% for twitter in twitters %}
                         <div class="alert alert-secondary" role="alert">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-1">
+                                    <div class="col-2 d-flex align-items-center">
                                         {% if profile.profile_image %}
                                             <img src="{{ profile.profile_image.url }}" width=50 height=50 alt="{{ profile.user.username }}" class="rounded-circle">
                                         {% else %}
                                             <img src="{% static 'images/default-profile.png' %}" width=50 height=50 alt="{{ profile.user.username }}" class="rounded-circle">
                                         {% endif %}
                                     </div>
-                                    <div class="col-11">
+                                    <div class="col-10">
                                         {{ twitter.body }} <br>
                                         <small class="text-muted">
                                             ({{ twitter.created_at }}) By @{{ twitter.user.username }} &nbsp;&nbsp; {{ twitter.number_of_likes }}
@@ -56,11 +56,11 @@
                     {% endfor %}
                 {% endif %}
             </div>
-            <div class="col-4">
+            <div class="col-sm-12 col-md-4">
                 <br><br><br>
 
                 {% if profile.profile_image %}
-                    <img src="{{ profile.profile_image.url }}" alt="profile image" width=200 height=auto class="rounded-circle">
+                    <img src="{{ profile.profile_image.url }}" alt="profile image" width=200 height=auto >
                     <br><br>
                 {% endif %}
 
@@ -141,6 +141,7 @@
                 {% if request.user.id == profile.user.id %}
                     <a href="{% url 'update_user' %}" class="btn btn-outline-secondary">Update Profile</a>
                 {% endif %}
+                <br><br>
             </div>
         </div>
     </div>
