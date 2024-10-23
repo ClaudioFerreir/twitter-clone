@@ -110,38 +110,10 @@ Se você desejar desativar os avisos sobre o plugin de exportação do Poetry, v
 poetry config warnings.export false
 ```
 
-## Configuração do Banco de Dados
-
-1. **Crie o banco de dados:**
-
-   Se você estiver usando o PostgreSQL, crie um banco de dados com o nome desejado:
-
-   ```bash
-   createdb nome_do_banco
-   ```
-
-2. **Configure as variáveis de ambiente:**
-
-   Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis (ou ajuste conforme necessário):
-
-   ```bash
-   SECRET_KEY=suachavesecreta
-   DEBUG=True
-   DATABASE_URL=postgres://usuario:senha@localhost/nome_do_banco
-   ```
-
-## Migrações
-
-Execute as migrações para configurar o banco de dados:
-
-```bash
-poetry run python manage.py migrate
-```
-
 ## Contribuindo
 
 Sinta-se à vontade para contribuir! Abra um issue ou envie um pull request.
 
 ## Licença
 
-Este projeto é licenciado sob a MIT License.
+Este projeto é opensource produzido por Claudio Ferreira como projeto final do curso Full Stack Python.
